@@ -62,7 +62,6 @@ Blockly.Arduino['dc_motor'] = function (block) {
   Blockly.Arduino.setups_['digital_write_7'] = "digitalWrite(7,LOW);";
   Blockly.Arduino.setups_['digital_write_3'] = "digitalWrite(2,HIGH);";
   Blockly.Arduino.setups_['setup_pin_mode_6'] = "pinMode(6, OUTPUT);";
-  alert(value_speed);
   if( (value_speed < -255 ) || (value_speed > 255)) {
     alert("speed should be between -255 to 255")
     return code;

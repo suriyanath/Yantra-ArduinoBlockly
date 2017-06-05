@@ -1,4 +1,4 @@
-Yantra-Ardublockly
+Yantra-Arduinoblockly
 
 To use this in Arduino IDE, follow below steps.
  1. Download the zip file from https://github.com/suriyanath/Yantra-ArduinoBlockly/archive/master.zip

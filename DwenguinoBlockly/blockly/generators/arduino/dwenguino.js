@@ -67,11 +67,17 @@ Blockly.Arduino['dc_motor'] = function (block) {
     return code;
   }
   if ( value_channel == 1) {
-    code = "digitalWrite(4,LOW);\n";
+    if ( value_speed > 0 )
+      code = "digitalWrite(4,LOW);\n";
+    else
+      code = "digitalWrite(4,HIGH);\n";
     code += "analogWrite(3,"+value_speed+");\n";
   }
   else if(value_channel == 2) {
-    code = "digitalWrite(6,LOW);\n";
+    if ( value_speed > 0 )
+      code = "digitalWrite(6,LOW);\n";
+    else
+      code = "digitalWrite(6,HIGH);\n";
     code += "analogWrite(5,"+value_speed+");\n";
   }
   return code;
@@ -89,7 +95,7 @@ Blockly.Arduino['dwenguino_lcd'] = function (block) {
     alert("character should be between 1 to 16")
     return code;
   }
-  Blockly.Arduino.setups_['setup_lcd'] = "lcd.begin(16, 2);"; 
+  Blockly.Arduino.setups_['setup_lcd'] = "lcd.begin(16, 2);";
   Blockly.Arduino.definitions_['define_lcd_h'] = "#include <LiquidCrystal.h>\n";
   Blockly.Arduino.definitions_['define_liquid_crystal'] = "LiquidCrystal lcd(8,9,10,11,12,13);"
   var code = 'lcd.setCursor(' + value_character_number + ',' + value_line_number + ');\n';

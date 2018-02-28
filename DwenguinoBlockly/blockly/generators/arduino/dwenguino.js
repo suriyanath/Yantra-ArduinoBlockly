@@ -67,17 +67,17 @@ Blockly.Arduino['dc_motor'] = function (block) {
     return code;
   }
   if ( value_channel == 1) {
-    if ( value_speed > 0 )
-      code = "digitalWrite(4,LOW);\n";
-    else
-      code = "digitalWrite(4,HIGH);\n";
+	  if (value_speed >= 0 ) 
+        code = "digitalWrite(4,LOW);\n";
+	  else 
+		code = "digitalWrite(4,HIGH);\n";
     code += "analogWrite(3,"+value_speed+");\n";
   }
   else if(value_channel == 2) {
-    if ( value_speed > 0 )
-      code = "digitalWrite(6,LOW);\n";
-    else
-      code = "digitalWrite(6,HIGH);\n";
+	   if (value_speed >= 0 ) 
+        code = "digitalWrite(6,LOW);\n";
+	  else 
+		code = "digitalWrite(6,HIGH);\n";
     code += "analogWrite(5,"+value_speed+");\n";
   }
   return code;
@@ -107,6 +107,18 @@ Blockly.Arduino['clear_lcd'] = function (block) {
   //  Assemble JavaScript into code variable.
   var code = 'lcd.clear();\n';
   return code;
+};
+
+Blockly.Arduino['bluetooth_sensor'] = function (block) {
+  var baudrate = Blockly.Arduino.valueToCode(block, 'baud', Blockly.Arduino.ORDER_ATOMIC);
+  //define bluetooth settings
+  Blockly.Arduino.setups_['setup_bluetooth'] = "Serial.begin("+baudrate+");";
+  Blockly.Arduino.definitions_['define_bluetooth'] = "char __readBluetooth()\n{ \
+    \n while(Serial.available())\n {\n char inChar = (char)Serial.read();\n return inChar;\n}\n}\n";
+  //  Assemble Arduino into code variable.
+  var code = "__readBluetooth()";
+
+  return [code, Blockly.Arduino.ORDER_NONE];
 };
 
 Blockly.Arduino['sonar_sensor'] = function (block) {
